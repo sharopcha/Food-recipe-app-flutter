@@ -13,11 +13,12 @@ class Card1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
         child: Container(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       constraints: const BoxConstraints.expand(width: 380, height: 600),
       decoration: const BoxDecoration(
         image: DecorationImage(
-            image: AssetImage('assets/mag1.png'), fit: BoxFit.fill),
+            image: AssetImage('assets/magazine_pics/mag1.png'),
+            fit: BoxFit.fill),
         borderRadius: BorderRadius.all(Radius.circular(10.0)),
       ),
       child: Stack(

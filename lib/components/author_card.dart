@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_recipe_apprentice/components/circle_image.dart';
 import 'package:food_recipe_apprentice/fooderlich_theme.dart';
 
-class AuthorCard extends StatelessWidget {
+class AuthorCard extends StatefulWidget {
   const AuthorCard(
       {Key? key,
       required this.authorName,
@@ -15,6 +15,13 @@ class AuthorCard extends StatelessWidget {
   final ImageProvider imageProvider;
 
   @override
+  State<AuthorCard> createState() => _AuthorCardState();
+}
+
+class _AuthorCardState extends State<AuthorCard> {
+  bool _isFavorited = false;
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(16),
@@ -24,7 +31,7 @@ class AuthorCard extends StatelessWidget {
           Row(
             children: [
               CircleImage(
-                imageProvider: imageProvider,
+                imageProvider: widget.imageProvider,
                 imageradius: 28,
               ),
               const SizedBox(
@@ -34,11 +41,11 @@ class AuthorCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    authorName,
+                    widget.authorName,
                     style: FooderlichTheme.lightTextTheme.headline3,
                   ),
                   Text(
-                    title,
+                    widget.title,
                     style: FooderlichTheme.lightTextTheme.headline4,
                   )
                 ],
@@ -46,12 +53,15 @@ class AuthorCard extends StatelessWidget {
             ],
           ),
           IconButton(
-            icon: const Icon(
-              Icons.favorite_border,
+            icon: Icon(
+              _isFavorited ? Icons.favorite : Icons.favorite_border,
             ),
             iconSize: 30,
-            color: Colors.grey[400],
+            color: _isFavorited ? Colors.red[400] : Colors.grey[400],
             onPressed: () {
+              setState(() {
+                _isFavorited = !_isFavorited;
+              });
               const snackBar = SnackBar(
                 behavior: SnackBarBehavior.floating,
                 content: Text('You favorited this author'),

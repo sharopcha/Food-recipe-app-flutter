@@ -24,7 +24,7 @@ class Fooderlich extends StatelessWidget {
               darkTheme.colorScheme.copyWith(secondary: Colors.green[600])),
       debugShowCheckedModeBanner: false,
       title: 'Fooderlich',
-      home: Home(),
+      home: const Home(),
     );
   }
 }

@@ -12,7 +12,7 @@ class Card2 extends StatelessWidget {
         constraints: const BoxConstraints.expand(width: 380, height: 600),
         decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/mag5.png'),
+              image: AssetImage('assets/magazine_pics/mag5.png'),
               fit: BoxFit.cover,
             ),
             borderRadius: BorderRadius.all(Radius.circular(10.0))),
@@ -21,7 +21,7 @@ class Card2 extends StatelessWidget {
             const AuthorCard(
               authorName: 'Azizmatov Shrofiddin',
               title: 'Smoothie Connoisseur',
-              imageProvider: AssetImage('assets/author.JPG'),
+              imageProvider: AssetImage('assets/profile_pics/author.JPG'),
             ),
             Expanded(
               child: Stack(

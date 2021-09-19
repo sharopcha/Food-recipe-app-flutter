@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:food_recipe_apprentice/components/card1.dart';
 import 'package:food_recipe_apprentice/components/card2.dart';
 import 'package:food_recipe_apprentice/components/card3.dart';
+import 'package:food_recipe_apprentice/models/models.dart';
+import 'package:food_recipe_apprentice/screens/explore_screen.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -14,9 +16,41 @@ class _HomeState extends State<Home> {
   int _selectedIndex = 0;
 
   static List<Widget> pages = [
-    const Card1(),
-    const Card2(),
-    const Card3(),
+    // Card1(
+    //   recipe: ExploreRecipe(
+    //       authorName: 'Ray Wendelich',
+    //       title: 'The Art of Dough',
+    //       subtitle: 'Editor\'s Choice',
+    //       message: 'Learn to make the perfect bread',
+    //       backgroundImage: 'assets/magazine_pics/mag1.png'),
+    // ),
+    ExploreScreen(),
+    Card2(
+      recipe: ExploreRecipe(
+          authorName: 'Mike Katz',
+          role: 'Smoothie Connoisseur',
+          profileImage: 'assets/profile_pics/person_katz.jpeg',
+          title: 'Recipe',
+          subtitle: 'Smoothies',
+          backgroundImage: 'assets/magazine_pics/mag2.png'),
+    ),
+    Card3(
+      recipe: ExploreRecipe(
+          title: 'Vegan Trends',
+          tags: [
+            'Healthy',
+            'Vegan',
+            'Carrots',
+            'Greens',
+            'Wheat',
+            'Pescetarian',
+            'Mint',
+            'Lemongrass',
+            'Salad',
+            'Water'
+          ],
+          backgroundImage: 'assets/magazine_pics/mag3.png'),
+    ),
   ];
 
   void _onItemTapped(int index) {
@@ -41,12 +75,9 @@ class _HomeState extends State<Home> {
         onTap: _onItemTapped,
         selectedItemColor: Theme.of(context).textSelectionTheme.selectionColor,
         items: const [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.card_giftcard), label: 'Card1'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.card_giftcard), label: 'Card2'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.card_giftcard), label: 'Card3'),
+          BottomNavigationBarItem(icon: Icon(Icons.explore), label: 'Explore'),
+          BottomNavigationBarItem(icon: Icon(Icons.list_alt), label: 'Recipes'),
+          BottomNavigationBarItem(icon: Icon(Icons.list), label: 'To Buy'),
         ],
       ),
     );

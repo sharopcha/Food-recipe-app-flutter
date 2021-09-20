@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe_apprentice/models/models.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class GroceryItemScreen extends StatefulWidget {
   const GroceryItemScreen({
@@ -83,12 +84,16 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
           children: [
             // TODO: 13 Add name text field
             buildNameFiled(),
-            SizedBox(
-              height: 16.0,
+            const SizedBox(
+              height: 13.0,
             ),
             // TODO: 14 add importance selection
             buildImportanceField(),
+            const SizedBox(
+              height: 10.0,
+            ),
             // TODO: 15 add data picker
+            buildDateFiled(),
             // TODO: 16 add time picker
             // TODO: 17 add color picker
             // TODO: 18 add slider
@@ -179,6 +184,41 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
             },
           ),
         ])
+      ],
+    );
+  }
+
+  Widget buildDateFiled() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'Date',
+              style: GoogleFonts.lato(fontSize: 28.0),
+            ),
+            TextButton(
+              child: const Text('Select'),
+              onPressed: () async {
+                final currentDate = DateTime.now();
+                final selectedDate = await showDatePicker(
+                  context: context,
+                  initialDate: currentDate,
+                  firstDate: currentDate,
+                  lastDate: DateTime(currentDate.year + 5),
+                );
+                setState(() {
+                  if (selectedDate != null) {
+                    _dueDate = selectedDate;
+                  }
+                });
+              },
+            ),
+          ],
+        ),
+        Text(DateFormat('yyy-MM-dd').format(_dueDate)),
       ],
     );
   }

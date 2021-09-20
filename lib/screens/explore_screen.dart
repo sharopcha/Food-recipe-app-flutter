@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe_apprentice/api/mock_fooderlich_service.dart';
 import 'package:food_recipe_apprentice/components/friend_post_list_view.dart';
-import 'package:food_recipe_apprentice/components/friend_post_tile.dart';
 import 'package:food_recipe_apprentice/components/today_recipe_list_view.dart';
 import 'package:food_recipe_apprentice/models/explore_data.dart';
 

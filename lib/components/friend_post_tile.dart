@@ -18,7 +18,7 @@ class FriendPostTile extends StatelessWidget {
             post.profileImageUrl.toString(),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           width: 16,
         ),
         Expanded(

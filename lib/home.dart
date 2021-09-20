@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:food_recipe_apprentice/components/card1.dart';
 import 'package:food_recipe_apprentice/components/card2.dart';
 import 'package:food_recipe_apprentice/components/card3.dart';
 import 'package:food_recipe_apprentice/models/models.dart';
 import 'package:food_recipe_apprentice/screens/explore_screen.dart';
+import 'package:food_recipe_apprentice/screens/recipes_screen.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -16,24 +16,8 @@ class _HomeState extends State<Home> {
   int _selectedIndex = 0;
 
   static List<Widget> pages = [
-    // Card1(
-    //   recipe: ExploreRecipe(
-    //       authorName: 'Ray Wendelich',
-    //       title: 'The Art of Dough',
-    //       subtitle: 'Editor\'s Choice',
-    //       message: 'Learn to make the perfect bread',
-    //       backgroundImage: 'assets/magazine_pics/mag1.png'),
-    // ),
     ExploreScreen(),
-    Card2(
-      recipe: ExploreRecipe(
-          authorName: 'Mike Katz',
-          role: 'Smoothie Connoisseur',
-          profileImage: 'assets/profile_pics/person_katz.jpeg',
-          title: 'Recipe',
-          subtitle: 'Smoothies',
-          backgroundImage: 'assets/magazine_pics/mag2.png'),
-    ),
+    RecipesScreen(),
     Card3(
       recipe: ExploreRecipe(
           title: 'Vegan Trends',

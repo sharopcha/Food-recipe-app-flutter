@@ -13,7 +13,7 @@ class TodayRecipeListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: 16, right: 16, top: 16),
+      padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
       child: Column(
         children: [
           Text(
@@ -25,10 +25,9 @@ class TodayRecipeListView extends StatelessWidget {
           ),
           Container(
             height: 370,
-            // TODO: Add list view here
             color: Colors.transparent,
             child: ListView.separated(
-                physics: ClampingScrollPhysics(),
+                physics: const ClampingScrollPhysics(),
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   final recipe = recipes[index];

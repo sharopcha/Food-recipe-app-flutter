@@ -31,7 +31,9 @@ class Fooderlich extends StatelessWidget {
           ChangeNotifierProvider(
             create: (contect) => TabManager(),
           ),
-          // TODO: Add Grocery Manager
+          ChangeNotifierProvider(
+            create: (context) => GroceryManager(),
+          ),
         ],
         child: const Home(),
       ),

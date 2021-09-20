@@ -82,7 +82,12 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
         child: ListView(
           children: [
             // TODO: 13 Add name text field
+            buildNameFiled(),
+            SizedBox(
+              height: 16.0,
+            ),
             // TODO: 14 add importance selection
+            buildImportanceField(),
             // TODO: 15 add data picker
             // TODO: 16 add time picker
             // TODO: 17 add color picker
@@ -91,6 +96,90 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
           ],
         ),
       ),
+    );
+  }
+
+  Widget buildNameFiled() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Item Name',
+          style: GoogleFonts.lato(fontSize: 28.0),
+        ),
+        TextField(
+          controller: _nameController,
+          cursorColor: _currentColor,
+          decoration: InputDecoration(
+            hintText: 'E.g Apples, Bannas, 1 Bag of salt',
+            enabledBorder: const UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.white),
+            ),
+            focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: _currentColor),
+            ),
+            border: UnderlineInputBorder(
+              borderSide: BorderSide(color: _currentColor),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget buildImportanceField() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Importance',
+          style: GoogleFonts.lato(fontSize: 28.0),
+        ),
+        const SizedBox(
+          height: 10.0,
+        ),
+        Wrap(spacing: 10.0, children: [
+          ChoiceChip(
+            selectedColor: Colors.green,
+            selected: _importance == Importance.low,
+            label: const Text(
+              'low',
+              style: TextStyle(color: Colors.white),
+            ),
+            onSelected: (selected) {
+              setState(() {
+                _importance = Importance.low;
+              });
+            },
+          ),
+          ChoiceChip(
+            selectedColor: Colors.green,
+            selected: _importance == Importance.medium,
+            label: const Text(
+              'medium',
+              style: TextStyle(color: Colors.white),
+            ),
+            onSelected: (selected) {
+              setState(() {
+                _importance = Importance.medium;
+              });
+            },
+          ),
+          ChoiceChip(
+            selectedColor: Colors.green,
+            selected: _importance == Importance.high,
+            label: const Text(
+              'high',
+              style: TextStyle(color: Colors.white),
+            ),
+            onSelected: (selected) {
+              setState(() {
+                _importance = Importance.high;
+              });
+            },
+          ),
+        ])
+      ],
     );
   }
 }

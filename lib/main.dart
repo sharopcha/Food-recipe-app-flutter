@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe_apprentice/fooderlich_theme.dart';
 import 'package:food_recipe_apprentice/home.dart';
+import 'package:food_recipe_apprentice/models/models.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const Fooderlich());
@@ -24,7 +26,15 @@ class Fooderlich extends StatelessWidget {
               darkTheme.colorScheme.copyWith(secondary: Colors.green[600])),
       debugShowCheckedModeBanner: false,
       title: 'Fooderlich',
-      home: const Home(),
+      home: MultiProvider(
+        providers: [
+          ChangeNotifierProvider(
+            create: (contect) => TabManager(),
+          ),
+          // TODO: Add Grocery Manager
+        ],
+        child: const Home(),
+      ),
     );
   }
 }

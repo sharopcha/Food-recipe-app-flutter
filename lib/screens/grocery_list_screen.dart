@@ -18,28 +18,48 @@ class GroceryListScreen extends StatelessWidget {
         itemCount: groceryItems.length,
         itemBuilder: (context, index) {
           final item = groceryItems[index];
-          // TODO: 28 Wrap in a dismisable
+          return Dismissible(
+            key: Key(item.id.toString()),
+            direction: DismissDirection.endToStart,
+            background: Container(
+              color: Colors.red,
+              alignment: Alignment.centerRight,
+              child: const Icon(
+                Icons.delete_forever,
+                color: Colors.white,
+                size: 40.0,
+              ),
+            ),
+            onDismissed: (direction) {
+              manager.deleteItem(index);
 
-          return InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => GroceryItemScreen(
-                          originalItem: item,
-                          onUpdate: (item) {
-                            manager.updateItem(item, index);
-                            Navigator.pop(context);
-                          },
-                        )),
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text("${item.name} dismissed"),
+                ),
               );
             },
-            child: GroceryTile(
-              key: Key(item.id.toString()),
-              item: item,
-              onComplete: (change) {
-                manager.completeItem(index, change!);
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => GroceryItemScreen(
+                            originalItem: item,
+                            onUpdate: (item) {
+                              manager.updateItem(item, index);
+                              Navigator.pop(context);
+                            },
+                          )),
+                );
               },
+              child: GroceryTile(
+                key: Key(item.id.toString()),
+                item: item,
+                onComplete: (change) {
+                  manager.completeItem(index, change!);
+                },
+              ),
             ),
           );
         },

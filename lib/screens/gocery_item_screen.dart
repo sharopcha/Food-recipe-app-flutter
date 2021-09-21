@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:food_recipe_apprentice/models/models.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -82,21 +83,21 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
         padding: EdgeInsets.all(16.0),
         child: ListView(
           children: [
-            // TODO: 13 Add name text field
             buildNameFiled(),
             const SizedBox(
               height: 13.0,
             ),
-            // TODO: 14 add importance selection
             buildImportanceField(),
             const SizedBox(
               height: 10.0,
             ),
-            // TODO: 15 add data picker
             buildDateFiled(),
-            // TODO: 16 add time picker
             buildTimeFiled(),
+            const SizedBox(
+              height: 10.0,
+            ),
             // TODO: 17 add color picker
+            buildColorPicker(),
             // TODO: 18 add slider
             // TODO: 19 add grocery tile
           ],
@@ -253,6 +254,54 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
           ],
         ),
         Text(_timeOfDay.format(context))
+      ],
+    );
+  }
+
+  Widget buildColorPicker() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Row(
+          children: [
+            Container(
+              height: 50.0,
+              width: 10.0,
+              color: _currentColor,
+            ),
+            const SizedBox(
+              width: 8.0,
+            ),
+            Text(
+              'Color',
+              style: GoogleFonts.lato(fontSize: 28.0),
+            ),
+          ],
+        ),
+        TextButton(
+          child: const Text('Select'),
+          onPressed: () {
+            showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    content: BlockPicker(
+                        pickerColor: Colors.white,
+                        onColorChanged: (color) {
+                          setState(() => _currentColor = color);
+                        }),
+                    actions: [
+                      TextButton(
+                        child: const Text('Save'),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                    ],
+                  );
+                });
+          },
+        ),
       ],
     );
   }

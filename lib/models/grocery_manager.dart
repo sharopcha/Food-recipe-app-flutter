@@ -4,7 +4,7 @@ import 'package:food_recipe_apprentice/models/models.dart';
 class GroceryManager extends ChangeNotifier {
   final _groceryItems = <GroceryItem>[];
 
-  List<GroceryItem> get groceryItem => List.unmodifiable(_groceryItems);
+  List<GroceryItem> get groceryItems => List.unmodifiable(_groceryItems);
 
   void deleteItem(int index) {
     _groceryItems.removeAt(index);

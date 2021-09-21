@@ -31,7 +31,10 @@ class _HomeState extends State<Home> {
               style: Theme.of(context).textTheme.headline6,
             ),
           ),
-          body: pages[tabManager.selectedTab],
+          body: IndexedStack(
+            index: tabManager.selectedTab,
+            children: pages,
+          ),
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: tabManager.selectedTab,
             onTap: (index) {

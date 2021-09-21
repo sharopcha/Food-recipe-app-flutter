@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:food_recipe_apprentice/components/grocery_tile.dart';
 import 'package:food_recipe_apprentice/models/models.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:uuid/uuid.dart';
 
 class GroceryItemScreen extends StatefulWidget {
   const GroceryItemScreen({
@@ -64,9 +66,24 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
       appBar: AppBar(
         actions: [
           IconButton(
-            icon: Icon(Icons.check),
+            icon: const Icon(Icons.check),
             onPressed: () {
               // TODO: 24 Add Callback
+              final groceryItem = GroceryItem(
+                id: widget.originalItem?.id ?? const Uuid().v1().toString(),
+                name: _nameController.text,
+                color: _currentColor,
+                quantity: _currentSliderValue,
+                date: DateTime(_dueDate.year, _dueDate.month, _dueDate.day,
+                    _timeOfDay.hour, _timeOfDay.minute),
+                importance: _importance,
+              );
+
+              if (widget.isUpdating) {
+                widget.onUpdate!(groceryItem);
+              } else {
+                widget.onCreate!(groceryItem);
+              }
             },
           )
         ],
@@ -80,7 +97,7 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
         centerTitle: true,
       ),
       body: Container(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: [
             buildNameFiled(),
@@ -100,9 +117,20 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
             const SizedBox(
               height: 10.0,
             ),
-            // TODO: 18 add slider
             buildQuantityField(),
-            // TODO: 19 add grocery tile
+            const SizedBox(
+              height: 16,
+            ),
+            GroceryTile(
+              item: GroceryItem(
+                name: _name,
+                importance: _importance,
+                color: _currentColor,
+                quantity: _currentSliderValue,
+                date: DateTime(_dueDate.year, _dueDate.month, _dueDate.day,
+                    _timeOfDay.hour, _timeOfDay.minute),
+              ),
+            ),
           ],
         ),
       ),

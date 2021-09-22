@@ -35,7 +35,18 @@ class AppRouter extends RouterDelegate
     );
   }
 
-  // TODO: _handlePopPage
+  bool _handlePopPage(Route<dynamic> route, result) {
+    if (!route.didPop(result)) {
+      return false;
+    }
+
+    // TODO: handle onboarding and splash
+    // TODO: handle state whenuser closes grocery item screen
+    // TODO: handle state when user closes profile screen
+    // TODO: handle state when user closes WebView screen
+
+    return true;
+  }
 
   @override
   Future<void> setNewRoutePath(configuration) async => null;

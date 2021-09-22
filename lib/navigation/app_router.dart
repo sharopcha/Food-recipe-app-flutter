@@ -21,7 +21,7 @@ class AppRouter extends RouterDelegate
   Widget build(BuildContext context) {
     return Navigator(
       key: navigatorKey,
-      // TODO: add onPopPage
+      onPopPage: _handlePopPage,
       pages: [
         // TODO: splash screen page
         // TODO: login screen

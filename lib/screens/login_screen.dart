@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:fooderlich/models/app_state_manager.dart';
 import 'package:fooderlich/models/fooderlich_pages.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatelessWidget {
   // LoginScreen MaterialPage Helper
@@ -62,7 +64,9 @@ class LoginScreen extends StatelessWidget {
           style: TextStyle(color: Colors.white),
         ),
         onPressed: () async {
-          // TODO: Login -> Navigate to home
+          // Login -> Navigate to home
+          Provider.of<AppStateManager>(context, listen: false)
+              .login('sharopcha', 'sharopcha1202');
         },
       ),
     );

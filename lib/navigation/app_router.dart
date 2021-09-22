@@ -56,7 +56,10 @@ class AppRouter extends RouterDelegate
       return false;
     }
 
-    // TODO: handle onboarding and splash
+    // handle onboarding and splash
+    if (route.settings.name == FooderlichPages.onboardingPath) {
+      appStateManager.logout();
+    }
     // TODO: handle state whenuser closes grocery item screen
     // TODO: handle state when user closes profile screen
     // TODO: handle state when user closes WebView screen

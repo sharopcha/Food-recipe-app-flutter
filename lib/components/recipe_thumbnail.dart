@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:food_recipe_apprentice/models/models.dart';
+import '../models/models.dart';
 
 class RecipeThumbnail extends StatelessWidget {
-  const RecipeThumbnail({Key? key, required this.recipe}) : super(key: key);
-
   final SimpleRecipe recipe;
+
+  const RecipeThumbnail({
+    Key key,
+    this.recipe,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,24 +19,22 @@ class RecipeThumbnail extends StatelessWidget {
           Expanded(
             child: ClipRRect(
               child: Image.asset(
-                recipe.dishImage.toString(),
+                '${recipe.dishImage}',
                 fit: BoxFit.cover,
               ),
               borderRadius: BorderRadius.circular(12),
             ),
           ),
-          const SizedBox(
-            height: 10,
-          ),
+          const SizedBox(height: 10),
           Text(
-            recipe.title.toString(),
+            recipe.title,
             maxLines: 1,
             style: Theme.of(context).textTheme.bodyText1,
           ),
           Text(
-            recipe.duration.toString(),
+            recipe.duration,
             style: Theme.of(context).textTheme.bodyText1,
-          )
+          ),
         ],
       ),
     );

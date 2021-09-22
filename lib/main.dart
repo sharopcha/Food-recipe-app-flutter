@@ -1,41 +1,59 @@
 import 'package:flutter/material.dart';
-import 'package:food_recipe_apprentice/fooderlich_theme.dart';
-import 'package:food_recipe_apprentice/home.dart';
-import 'package:food_recipe_apprentice/models/models.dart';
+import 'screens/splash_screen.dart';
+import 'fooderlich_theme.dart';
 import 'package:provider/provider.dart';
+import 'models/models.dart';
+// TODO: Import app_router
 
 void main() {
-  runApp(const Fooderlich());
+  runApp(
+    const Fooderlich(),
+  );
 }
 
-class Fooderlich extends StatelessWidget {
-  const Fooderlich({Key? key}) : super(key: key);
+class Fooderlich extends StatefulWidget {
+  const Fooderlich({Key key}) : super(key: key);
+
+  @override
+  _FooderlichState createState() => _FooderlichState();
+}
+
+class _FooderlichState extends State<Fooderlich> {
+  final _groceryManager = GroceryManager();
+  final _profileManager = ProfileManager();
+  // TODO: Create AppStateManager
+  // TODO: Define AppRouter
+
+  // TODO: Initialize app router
 
   @override
   Widget build(BuildContext context) {
-    final darkTheme = FooderlichTheme.dark();
-    // final lightTheme = FooderlichTheme.light();
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => _groceryManager,
+        ),
+        ChangeNotifierProvider(
+          create: (context) => _profileManager,
+        ),
+        // TODO: Add AppStateManager ChangeNotifierProvider
+      ],
+      child: Consumer<ProfileManager>(
+        builder: (context, profileManager, child) {
+          ThemeData theme;
+          if (profileManager.darkMode) {
+            theme = FooderlichTheme.dark();
+          } else {
+            theme = FooderlichTheme.light();
+          }
 
-    return MaterialApp(
-      // theme: lightTheme.copyWith(
-      //     colorScheme:
-      //         lightTheme.colorScheme.copyWith(secondary: Colors.black)),
-
-      theme: darkTheme.copyWith(
-          colorScheme:
-              darkTheme.colorScheme.copyWith(secondary: Colors.green[600])),
-      debugShowCheckedModeBanner: false,
-      title: 'Fooderlich',
-      home: MultiProvider(
-        providers: [
-          ChangeNotifierProvider(
-            create: (contect) => TabManager(),
-          ),
-          ChangeNotifierProvider(
-            create: (context) => GroceryManager(),
-          ),
-        ],
-        child: const Home(),
+          return MaterialApp(
+            theme: theme,
+            title: 'Fooderlich',
+            // TODO: Replace with Router widget
+            home: const SplashScreen(),
+          );
+        },
       ),
     );
   }

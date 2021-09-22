@@ -30,9 +30,21 @@ class AppStateManager extends ChangeNotifier {
   // login
   void login(String username, String password) {
     _loggedIn = true;
+
+    notifyListeners();
   }
-  // TODO: add completeOnboarding
-  // TODO: add goToTab
+
+  //  completeOnboarding
+  void completeOnboarding() {
+    _onboardingComplete = true;
+    notifyListeners();
+  }
+
+  //  goToTab
+  void goToTab(int index) {
+    _selectedTab = index;
+    notifyListeners();
+  }
   // TODO: add goToRecipes
   // TODO: add logout
 }

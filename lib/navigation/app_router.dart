@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fooderlich/models/models.dart';
+import 'package:fooderlich/screens/screens.dart';
+import '../models/models.dart';
 
 class AppRouter extends RouterDelegate
     with ChangeNotifier, PopNavigatorRouterDelegateMixin {
@@ -10,7 +11,7 @@ class AppRouter extends RouterDelegate
   final GroceryManager groceryManager;
   final ProfileManager profileManager;
 
-  AppRouter(this.appStateManager, this.groceryManager, this.profileManager)
+  AppRouter({this.appStateManager, this.groceryManager, this.profileManager})
       : navigatorKey = GlobalKey<NavigatorState>() {
     //  add listeners
     appStateManager.addListener(notifyListeners);
@@ -33,7 +34,8 @@ class AppRouter extends RouterDelegate
       key: navigatorKey,
       onPopPage: _handlePopPage,
       pages: [
-        // TODO: splash screen page
+        // splash screen page
+        if (!appStateManager.isInitialized) SplashScreen.page(),
         // TODO: login screen
         // TODO: onboarding screen
         // TODO: home screen

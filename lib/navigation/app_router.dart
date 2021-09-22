@@ -12,10 +12,20 @@ class AppRouter extends RouterDelegate
 
   AppRouter(this.appStateManager, this.groceryManager, this.profileManager)
       : navigatorKey = GlobalKey<NavigatorState>() {
-    // TODO: add listeners
+    //  add listeners
+    appStateManager.addListener(notifyListeners);
+    groceryManager.addListener(notifyListeners);
+    profileManager.addListener(notifyListeners);
   }
 
-  // TODO: dispose listeners
+  // dispose listeners
+  @override
+  void dispose() {
+    appStateManager.removeListener(notifyListeners);
+    groceryManager.removeListener(notifyListeners);
+    profileManager.removeListener(notifyListeners);
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

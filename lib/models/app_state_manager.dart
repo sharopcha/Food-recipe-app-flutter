@@ -26,7 +26,11 @@ class AppStateManager extends ChangeNotifier {
       notifyListeners();
     });
   }
-  // TODO: add login
+
+  // login
+  void login(String username, String password) {
+    _loggedIn = true;
+  }
   // TODO: add completeOnboarding
   // TODO: add goToTab
   // TODO: add goToRecipes

@@ -20,7 +20,7 @@ class AppStateManager extends ChangeNotifier {
   int get getSelectedTab => _selectedTab;
 
   //  initialize app
-  void intializeApp() {
+  void initializeApp() {
     Timer(const Duration(milliseconds: 2000), () {
       _initialized = true;
       notifyListeners();
@@ -45,6 +45,22 @@ class AppStateManager extends ChangeNotifier {
     _selectedTab = index;
     notifyListeners();
   }
-  // TODO: add goToRecipes
-  // TODO: add logout
+
+  // goToRecipes
+  void goToRecipes() {
+    _selectedTab = FooderlichTab.recipes;
+    notifyListeners();
+  }
+
+  // logout
+  void logout() {
+    _loggedIn = false;
+    _onboardingComplete = false;
+    _initialized = false;
+    _selectedTab = 0;
+
+    initializeApp();
+
+    notifyListeners();
+  }
 }

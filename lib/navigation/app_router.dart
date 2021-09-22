@@ -39,7 +39,9 @@ class AppRouter extends RouterDelegate
         // login screen
         if (appStateManager.isInitialized && !appStateManager.isLoggedIn)
           LoginScreen.page(),
-        // TODO: onboarding screen
+        // onboarding screen
+        if (appStateManager.isLoggedIn && !appStateManager.isOnboardingComplete)
+          OnboardingScreen.page(),
         // TODO: home screen
         // TODO: create new item screen
         // TODO: select grocery item screen

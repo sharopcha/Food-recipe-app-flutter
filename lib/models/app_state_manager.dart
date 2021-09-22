@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 class FooderlichTab {
@@ -17,7 +19,13 @@ class AppStateManager extends ChangeNotifier {
   bool get isOnboardingComplete => _onboardingComplete;
   int get getSelectedTab => _selectedTab;
 
-  // TODO: add initialized app
+  //  initialize app
+  void intializeApp() {
+    Timer(const Duration(milliseconds: 2000), () {
+      _initialized = true;
+      notifyListeners();
+    });
+  }
   // TODO: add login
   // TODO: add completeOnboarding
   // TODO: add goToTab

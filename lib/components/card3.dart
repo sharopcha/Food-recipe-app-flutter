@@ -1,30 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:food_recipe_apprentice/fooderlich_theme.dart';
-import 'package:food_recipe_apprentice/models/explore_recipe.dart';
+import '../fooderlich_theme.dart';
+import '../models/models.dart';
 
 class Card3 extends StatelessWidget {
-  const Card3({Key? key, required this.recipe}) : super(key: key);
-
   final ExploreRecipe recipe;
 
-  List<Widget> createChips() {
+  const Card3({
+    Key key,
+    this.recipe,
+  }) : super(key: key);
+
+  List<Widget> createTagChips() {
     final chips = <Widget>[];
-
-    recipe.tags!.take(6).forEach((element) {
-      final chip = Chip(
-        label: Text(
-          element,
-          style: FooderlichTheme.darkTextTheme.bodyText1,
-        ),
-        backgroundColor: Colors.black.withOpacity(0.7),
-        onDeleted: () {
-          // ignore: avoid_print
-          print('chip deleted');
-        },
-      );
-
-      chips.add(chip);
-    });
+    recipe.tags.take(6).forEach(
+      (element) {
+        final chip = Chip(
+          label: Text(
+            element,
+            style: FooderlichTheme.darkTextTheme.bodyText1,
+          ),
+          backgroundColor: Colors.black.withOpacity(0.7),
+        );
+        chips.add(chip);
+      },
+    );
 
     return chips;
   }
@@ -33,10 +32,13 @@ class Card3 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        constraints: const BoxConstraints.expand(width: 380, height: 600),
+        constraints: const BoxConstraints.expand(
+          width: 350,
+          height: 450,
+        ),
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(recipe.backgroundImage.toString()),
+            image: AssetImage(recipe.backgroundImage),
             fit: BoxFit.cover,
           ),
           borderRadius: const BorderRadius.all(
@@ -49,7 +51,7 @@ class Card3 extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.black.withOpacity(0.6),
                 borderRadius: const BorderRadius.all(
-                  Radius.circular(10),
+                  Radius.circular(10.0),
                 ),
               ),
             ),
@@ -63,26 +65,22 @@ class Card3 extends StatelessWidget {
                     color: Colors.white,
                     size: 40,
                   ),
-                  const SizedBox(
-                    height: 8,
-                  ),
+                  const SizedBox(height: 8),
                   Text(
-                    recipe.title.toString(),
+                    recipe.title,
                     style: FooderlichTheme.darkTextTheme.headline2,
                   ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  Center(
-                    child: Wrap(
-                      spacing: 12,
-                      alignment: WrapAlignment.start,
-                      children: createChips(),
-                    ),
-                  ),
+                  const SizedBox(height: 30),
                 ],
               ),
-            )
+            ),
+            Center(
+              child: Wrap(
+                alignment: WrapAlignment.start,
+                spacing: 12,
+                children: createTagChips(),
+              ),
+            ),
           ],
         ),
       ),

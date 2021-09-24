@@ -1,22 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:food_recipe_apprentice/api/mock_fooderlich_service.dart';
-import 'package:food_recipe_apprentice/components/one_card_grid.dart';
-import 'package:food_recipe_apprentice/components/recipes_grid_view.dart';
-import 'package:food_recipe_apprentice/models/models.dart';
+import '../api/mock_fooderlich_service.dart';
+import '../components/components.dart';
 
 class RecipesScreen extends StatelessWidget {
-  RecipesScreen({Key? key}) : super(key: key);
-
   final exploreService = MockFooderlichService();
+
+  RecipesScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<SimpleRecipe>>(
+    return FutureBuilder(
       future: exploreService.getRecipes(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
-          return RecipesGridView(recipes: snapshot.data as List<SimpleRecipe>);
-          // return OneCardGrid(recipes: snapshot.data as List<SimpleRecipe>);
+          return RecipesGridView(recipes: snapshot.data);
         } else {
           return const Center(
             child: CircularProgressIndicator(),

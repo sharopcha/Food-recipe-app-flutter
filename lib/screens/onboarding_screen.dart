@@ -29,10 +29,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0.0,
-        title: const Text('Getting Started'),
+        centerTitle: true,
+        title: const Text(
+          'Getting Started',
+          style: TextStyle(color: Colors.black),
+        ),
         leading: GestureDetector(
           child: const Icon(
             Icons.chevron_left,
+            color: Colors.black,
             size: 35,
           ),
           onTap: () {

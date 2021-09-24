@@ -52,7 +52,14 @@ class AppRouter extends RouterDelegate
               groceryManager.addItem(item);
             },
           ),
-        // TODO: select grocery item screen
+        // select grocery item screen
+        if (groceryManager.selectedIndex != null)
+          GroceryItemScreen.page(
+              item: groceryManager.selectedGroceryItem,
+              index: groceryManager.selectedIndex,
+              onUpdate: (item, index) {
+                groceryManager.updateItem(item, index);
+              })
         // TODO: profile screen
         // TODO: web view screen
       ],

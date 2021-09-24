@@ -45,7 +45,13 @@ class AppRouter extends RouterDelegate
         // home screen
         if (appStateManager.isOnboardingComplete)
           Home.page(appStateManager.getSelectedTab),
-        // TODO: create new item screen
+        // create new item screen
+        if (groceryManager.isCreatingNewItem)
+          GroceryItemScreen.page(
+            onCreate: (item) {
+              groceryManager.addItem(item);
+            },
+          ),
         // TODO: select grocery item screen
         // TODO: profile screen
         // TODO: web view screen

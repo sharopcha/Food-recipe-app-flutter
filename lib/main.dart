@@ -4,7 +4,6 @@ import 'navigation/app_router.dart';
 import 'fooderlich_theme.dart';
 import 'package:provider/provider.dart';
 import 'models/models.dart';
-// TODO: Import app_router
 
 void main() {
   runApp(
@@ -65,7 +64,8 @@ class _FooderlichState extends State<Fooderlich> {
             title: 'Fooderlich',
             home: Router(
               routerDelegate: _appRouter,
-              // TODO: add back button dispatcher
+              //  add back button dispatcher
+              backButtonDispatcher: RootBackButtonDispatcher(),
             ),
           );
         },

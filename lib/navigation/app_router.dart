@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fooderlich/screens/screens.dart';
+import '../screens/screens.dart';
 import '../models/models.dart';
 
 class AppRouter extends RouterDelegate
@@ -59,8 +59,10 @@ class AppRouter extends RouterDelegate
               index: groceryManager.selectedIndex,
               onUpdate: (item, index) {
                 groceryManager.updateItem(item, index);
-              })
-        // TODO: profile screen
+              }),
+        // profile screen
+        if (profileManager.didSelectUser)
+          ProfileScreen.page(profileManager.getUser),
         // TODO: web view screen
       ],
     );
@@ -75,8 +77,14 @@ class AppRouter extends RouterDelegate
     if (route.settings.name == FooderlichPages.onboardingPath) {
       appStateManager.logout();
     }
-    // TODO: handle state whenuser closes grocery item screen
-    // TODO: handle state when user closes profile screen
+    // handle state whenuser closes grocery item screen
+    if (route.settings.name == FooderlichPages.groceryItemDetails) {
+      groceryManager.groceryItemTapped(null);
+    }
+    // handle state when user closes profile screen
+    if (route.settings.name == FooderlichPages.profilePath) {
+      profileManager.tapOnProfile(false);
+    }
     // TODO: handle state when user closes WebView screen
 
     return true;

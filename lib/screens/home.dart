@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:fooderlich/models/app_state_manager.dart';
-import 'package:fooderlich/models/fooderlich_pages.dart';
+import '../models/models.dart';
+import '../models/app_state_manager.dart';
+import '../models/fooderlich_pages.dart';
 import 'package:provider/provider.dart';
 import 'explore_screen.dart';
 import 'recipes_screen.dart';
@@ -88,7 +89,11 @@ class _HomeState extends State<Home> {
           ),
         ),
         onTap: () {
-          // TODO: home -> profile
+          // home -> profile
+          Provider.of<ProfileManager>(
+            context,
+            listen: false,
+          ).tapOnProfile(true);
         },
       ),
     );

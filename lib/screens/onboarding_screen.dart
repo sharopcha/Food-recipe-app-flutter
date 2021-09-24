@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fooderlich/models/app_state_manager.dart';
+import '../models/app_state_manager.dart';
 import 'package:provider/provider.dart';
 import '../models/fooderlich_pages.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';

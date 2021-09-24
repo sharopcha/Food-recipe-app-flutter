@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fooderlich/models/app_state_manager.dart';
+import '../models/app_state_manager.dart';
 import 'package:provider/provider.dart';
 
 class EmptyGroceryScreen extends StatelessWidget {
